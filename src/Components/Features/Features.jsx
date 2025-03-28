@@ -1,6 +1,6 @@
 const Features = () => {
   return (
-    <div className="max-w-5xl mx-auto mt-10 px-2.5 md:px-2">
+    <div className="max-w-5xl mx-auto pt-10 pb-7 px-2.5 md:px-2">
       <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
         <div>
           <img src="Images/icons/1.png" className="w-14" />

@@ -11,14 +11,26 @@ import Root from "./Components/Root/Root";
 import Home from "./Components/Home/Home";
 import Addcoffee from "./Components/Addcoffee/Addcoffee";
 import Users from "./Components/Users/Users";
+import CoffeeDetails from "./Components/CoffeeDetails/CoffeeDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Root></Root>}>
-        <Route index element={<Home></Home>}></Route>
+        <Route
+          index
+          loader={() => fetch("http://localhost:5000/coffees")}
+          element={<Home></Home>}
+        ></Route>
         <Route path="/addcoffee" element={<Addcoffee></Addcoffee>}></Route>
         <Route path="/users" element={<Users></Users>}></Route>
+        <Route
+          path="/coffees/:id"
+          loader={({ params }) =>
+            fetch(`http://localhost:5000/coffees/${params.id}`)
+          }
+          element={<CoffeeDetails />}
+        ></Route>
       </Route>
     </>
   )

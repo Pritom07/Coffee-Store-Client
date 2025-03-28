@@ -4,7 +4,7 @@ const Topbanner = () => {
       <div
         className="hero min-h-screen px-4 md:px-8 flex items-center justify-center"
         style={{
-          backgroundImage: "url(Images/more/3.png)",
+          backgroundImage: "url('/Images/more/3.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
