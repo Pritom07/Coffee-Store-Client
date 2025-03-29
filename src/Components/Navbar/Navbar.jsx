@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { GiCoffeeCup } from "react-icons/gi";
 import { ImUsers } from "react-icons/im";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const navLinks = (
     <>
       <li>
@@ -24,6 +26,11 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleSignIn = () => {
+    navigate("/pages/signin");
+  };
+
   return (
     <div>
       <div className="navbar bg-[#6F4E37]">
@@ -52,9 +59,13 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+
+          {/* <a className="btn btn-ghost text-xl">
             <img src="Images/more/2.png" className="w-14"></img>
-          </a>
+          </a> */}
+          <p className="font-rancho text-3xl md:text-4xl font-semibold text-white">
+            Coffee Store
+          </p>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-white font-semibold text-[16px]">
@@ -62,7 +73,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white">
+          <a
+            onClick={handleSignIn}
+            className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white"
+          >
             SignIn
           </a>
         </div>

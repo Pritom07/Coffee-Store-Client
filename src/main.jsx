@@ -14,6 +14,9 @@ import Users from "./Components/Users/Users";
 import CoffeeDetails from "./Components/CoffeeDetails/CoffeeDetails";
 import UpdateCoffee from "./Components/UpdateCoffee/UpdateCoffee";
 import Error from "./Components/Error";
+import Signin from "./Components/Pages/Signin/Signin";
+import Signup from "./Components/Pages/Signup/Signup";
+import UserAccess from "./Components/Pages/UserAccess/UserAccess";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +43,11 @@ const router = createBrowserRouter(
           }
           element={<UpdateCoffee />}
         ></Route>
+      </Route>
+      ,
+      <Route path="/pages" element={<UserAccess />}>
+        <Route path="/pages/signin" element={<Signin />}></Route>
+        <Route path="/pages/signup" element={<Signup />}></Route>
       </Route>
       ,<Route path="*" element={<Error />}></Route>
     </>
