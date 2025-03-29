@@ -12,6 +12,7 @@ import Home from "./Components/Home/Home";
 import Addcoffee from "./Components/Addcoffee/Addcoffee";
 import Users from "./Components/Users/Users";
 import CoffeeDetails from "./Components/CoffeeDetails/CoffeeDetails";
+import UpdateCoffee from "./Components/UpdateCoffee/UpdateCoffee";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,13 @@ const router = createBrowserRouter(
             fetch(`http://localhost:5000/coffees/${params.id}`)
           }
           element={<CoffeeDetails />}
+        ></Route>
+        <Route
+          path="/updateCoffee/:id"
+          loader={({ params }) =>
+            fetch(`http://localhost:5000/coffees/${params.id}`)
+          }
+          element={<UpdateCoffee />}
         ></Route>
       </Route>
     </>

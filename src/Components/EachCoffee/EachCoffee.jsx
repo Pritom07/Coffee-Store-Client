@@ -3,14 +3,52 @@ import { IoEye } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const EachCoffee = ({ coffee }) => {
+const EachCoffee = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, chef, taste, photoURL } = coffee;
   const navigate = useNavigate();
 
   const handleShowing = (id) => {
     navigate(`/coffees/${id}`);
   };
+
+  const handleEditing = (idx) => {
+    navigate(`/updateCoffee/${idx}`);
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffees/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              const newCoffeesCollection = coffees.filter(
+                (coffee) => coffee._id !== id
+              );
+              setCoffees(newCoffeesCollection);
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div className="flex">
       <div className="card card-side bg-[#F5F4F1] flex-grow flex flex-col lg:flex-row justify-center items-center">
@@ -43,11 +81,17 @@ const EachCoffee = ({ coffee }) => {
                 <IoEye />
               </button>
               <br />
-              <button className="bg-[#3C393B] text-white text-[18px] p-3 mt-2 rounded-[4px] cursor-pointer">
+              <button
+                onClick={() => handleEditing(_id)}
+                className="bg-[#3C393B] text-white text-[18px] p-3 mt-2 rounded-[4px] cursor-pointer"
+              >
                 <MdEdit />
               </button>
               <br />
-              <button className="bg-[#EA4744] text-white text-[18px] p-3 mt-2 rounded-[4px] cursor-pointer">
+              <button
+                onClick={() => handleDelete(_id)}
+                className="bg-[#EA4744] text-white text-[18px] p-3 mt-2 rounded-[4px] cursor-pointer"
+              >
                 <MdDelete />
               </button>
             </div>

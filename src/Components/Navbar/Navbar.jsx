@@ -62,7 +62,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="bg-cyan-500 text-white btn border-2 border-cyan-500">
+          <a className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white">
             SignIn
           </a>
         </div>

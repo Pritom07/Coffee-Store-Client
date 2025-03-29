@@ -18,6 +18,18 @@ const Root = () => {
       >
         <Footer />
       </div>
+      <div
+        className="h-12 flex justify-center items-center"
+        style={{
+          backgroundImage: "url('/Images/more/24.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h1 className="text-white font-rancho text-2xl">
+          Copyright Coffee Store ! All Rights Reserved
+        </h1>
+      </div>
     </div>
   );
 };

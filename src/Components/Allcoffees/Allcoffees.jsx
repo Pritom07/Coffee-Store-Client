@@ -2,12 +2,16 @@ import { BsFillCupFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import EachCoffee from "../EachCoffee/EachCoffee";
+import { useState } from "react";
 
 const Allcoffees = ({ coffeesCollection }) => {
+  const [coffees, setCoffees] = useState(coffeesCollection);
   const navigate = useNavigate();
+
   const handleAddCoffee = () => {
     navigate("/addcoffee");
   };
+
   return (
     <div
       className="mt-7 min-h-screen"
@@ -41,9 +45,14 @@ const Allcoffees = ({ coffeesCollection }) => {
           backgroundPosition: "right top",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto mt-7">
-          {coffeesCollection.map((coffee) => (
-            <EachCoffee key={coffee._id} coffee={coffee} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto mt-8">
+          {coffees.map((coffee) => (
+            <EachCoffee
+              key={coffee._id}
+              coffee={coffee}
+              coffees={coffees}
+              setCoffees={setCoffees}
+            />
           ))}
         </div>
       </div>

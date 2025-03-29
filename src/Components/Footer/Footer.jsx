@@ -68,7 +68,7 @@ const Footer = () => {
               className="bg-base-300 w-full p-2 mt-3 h-14 focus:outline-none focus:ring-2 focus:ring-[#E3B577] rounded-[4px]"
             />
             <br />
-            <button className="text-[#331A15] font-rancho text-2xl border-2 border-[#331A15] px-3 py-2 rounded-3xl mt-6 cursor-pointer hover:scale-x-95">
+            <button className="text-[#331A15] font-rancho text-2xl border-2 border-[#331A15] px-3 py-2 rounded-3xl mt-6 cursor-pointer hover:scale-x-95 mb-5 xl:mb-0">
               Send Message
             </button>
           </form>

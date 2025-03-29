@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Allcoffees from "../Allcoffees/Allcoffees";
 import Features from "../Features/Features";
 import Topbanner from "../Topbanner/Topbanner";
+import Followpart from "../Followpart/Followpart";
 
 const Home = () => {
   const coffeesCollection = useLoaderData();
@@ -14,6 +15,7 @@ const Home = () => {
       <div>
         <Allcoffees coffeesCollection={coffeesCollection} />
       </div>
+      <Followpart />
     </div>
   );
 };

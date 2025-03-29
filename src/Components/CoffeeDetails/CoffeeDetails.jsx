@@ -2,8 +2,7 @@ import { useLoaderData } from "react-router-dom";
 
 const CoffeeDetails = () => {
   const coffee = useLoaderData();
-  const { _id, name, chef, supplier, taste, category, details, photoURL } =
-    coffee;
+  const { name, chef, supplier, taste, category, details, photoURL } = coffee;
   return (
     <div
       className="min-h-screen"
@@ -15,7 +14,7 @@ const CoffeeDetails = () => {
       }}
     >
       <section className="max-w-5xl mx-auto flex justify-center items-center min-h-screen px-2">
-        <div className="card card-side bg-[#F4F3F0] shadow-sm flex flex-col md:flex-row justify-between items-center">
+        <div className="card card-side bg-[#F4F3F0] shadow-sm flex flex-col lg:flex-row justify-between items-center">
           <figure>
             <img src={photoURL} className=" w-ful md:w-[450px]" />
           </figure>
