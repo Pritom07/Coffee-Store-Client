@@ -13,6 +13,7 @@ import Addcoffee from "./Components/Addcoffee/Addcoffee";
 import Users from "./Components/Users/Users";
 import CoffeeDetails from "./Components/CoffeeDetails/CoffeeDetails";
 import UpdateCoffee from "./Components/UpdateCoffee/UpdateCoffee";
+import Error from "./Components/Error";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
           element={<UpdateCoffee />}
         ></Route>
       </Route>
+      ,<Route path="*" element={<Error />}></Route>
     </>
   )
 );
