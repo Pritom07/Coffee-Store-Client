@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
+  const navigate = useNavigate();
   const [users, setUsers] = useState(loadedUsers);
 
   const handleUpdateUser = (id) => {
-    console.log(id);
+    navigate(`/updateUser/${id}`);
   };
 
   const handleUserDelete = (id) => {

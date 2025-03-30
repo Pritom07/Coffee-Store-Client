@@ -36,7 +36,7 @@ const EachCoffee = ({ coffee, coffees, setCoffees }) => {
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: `${name} deleted successfully`,
                 icon: "success",
               });
               const newCoffeesCollection = coffees.filter(

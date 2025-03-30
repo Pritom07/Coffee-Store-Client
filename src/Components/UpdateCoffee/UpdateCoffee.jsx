@@ -1,5 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { IoMdStar } from "react-icons/io";
 
 const UpdateCoffee = () => {
   const coffee = useLoaderData();
@@ -76,6 +77,7 @@ const UpdateCoffee = () => {
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Name
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
@@ -88,6 +90,7 @@ const UpdateCoffee = () => {
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Chef
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
@@ -113,6 +116,7 @@ const UpdateCoffee = () => {
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Taste
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
@@ -150,6 +154,7 @@ const UpdateCoffee = () => {
         <div className="w-full mt-3">
           <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
             PhotoURL
+            <IoMdStar className="inline ml-1 text-xs text-red-700" />
           </label>
           <input
             type="text"

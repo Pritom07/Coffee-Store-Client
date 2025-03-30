@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { IoMdStar } from "react-icons/io";
 
 const Addcoffee = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Addcoffee = () => {
         console.log(data);
         if (data.insertedId) {
           Swal.fire({
-            title: "Coffee added successfully",
+            title: `${name} added successfully !`,
             icon: "success",
             draggable: true,
           });
@@ -69,23 +70,27 @@ const Addcoffee = () => {
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Name
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
               name="name"
               className="input w-full focus:outline-none focus:ring-2 focus:ring-[#E3B577]"
               placeholder="Enter coffee name"
+              required
             />
           </div>
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Chef
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
               name="chef"
               className="input w-full focus:outline-none focus:ring-2 focus:ring-[#E3B577]"
               placeholder="Enter coffee chef"
+              required
             />
           </div>
         </div>
@@ -104,12 +109,14 @@ const Addcoffee = () => {
           <div className="w-full md:w-1/2">
             <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
               Taste
+              <IoMdStar className="inline ml-1 text-xs text-red-700" />
             </label>
             <input
               type="text"
               name="taste"
               className="input w-full focus:outline-none focus:ring-2 focus:ring-[#E3B577]"
               placeholder="Enter coffee taste"
+              required
             />
           </div>
         </div>
@@ -140,12 +147,14 @@ const Addcoffee = () => {
         <div className="w-full mt-3">
           <label className="font-railway font-semibold text-xl text-[#1B1A1A]">
             PhotoURL
+            <IoMdStar className="inline ml-1 text-xs text-red-700" />
           </label>
           <input
             type="text"
             name="photo"
             className="input w-full focus:outline-none focus:ring-2 focus:ring-[#E3B577]"
             placeholder="Enter photo URL"
+            required
           />
         </div>
         <button className="bg-[#D2B48C] text-2xl font-rancho text-[#331A15] border-2 border-[#331A15] w-full p-1.5 mt-6 rounded-[4px] cursor-pointer">

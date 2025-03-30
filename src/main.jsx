@@ -19,6 +19,7 @@ import Signup from "./Components/Pages/Signup/Signup";
 import UserAccess from "./Components/Pages/UserAccess/UserAccess";
 import Provider from "./Components/Provider";
 import { ToastContainer, Zoom } from "react-toastify";
+import UpdateUser from "./Components/UpdateUser/UpdateUser";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,6 +49,13 @@ const router = createBrowserRouter(
             fetch(`http://localhost:5000/coffees/${params.id}`)
           }
           element={<UpdateCoffee />}
+        ></Route>
+        <Route
+          path="/updateUser/:id"
+          loader={({ params }) =>
+            fetch(`http://localhost:5000/users/${params.id}`)
+          }
+          element={<UpdateUser />}
         ></Route>
       </Route>
       ,
