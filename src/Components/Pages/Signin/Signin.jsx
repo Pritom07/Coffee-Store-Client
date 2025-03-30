@@ -42,7 +42,7 @@ const Signin = () => {
           .then((data) => {
             if (data.modifiedCount) {
               toast.success(
-                "Thanks, You are successfully SignedIn the website!"
+                "Thanks, You are successfully SignedIn the website !"
               );
               navigate("/");
             }

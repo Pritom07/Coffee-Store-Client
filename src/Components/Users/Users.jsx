@@ -1,47 +1,56 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../Provider";
+import { toast } from "react-toastify";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
   const navigate = useNavigate();
+  const { User } = useContext(ThemeContext);
   const [users, setUsers] = useState(loadedUsers);
 
   const handleUpdateUser = (id) => {
+    //i am using private route here without using if(User){}
     navigate(`/updateUser/${id}`);
   };
 
   const handleUserDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete user!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-              const remainingUsers = users.filter((user) => user._id !== id);
-              setUsers(remainingUsers);
-            }
-          });
-      }
-    });
+    if (User) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete user!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/users/${id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                const remainingUsers = users.filter((user) => user._id !== id);
+                setUsers(remainingUsers);
+              }
+            });
+        }
+      });
+    } else {
+      navigate("/pages/signin");
+      toast.warn("You have to SignIn first to Delete User.");
+    }
   };
 
   return (

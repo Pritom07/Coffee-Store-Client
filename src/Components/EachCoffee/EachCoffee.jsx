@@ -1,52 +1,62 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { IoEye } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../Provider";
+import { toast } from "react-toastify";
 
 const EachCoffee = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, chef, taste, photoURL } = coffee;
   const navigate = useNavigate();
+  const { User } = useContext(ThemeContext);
 
   const handleShowing = (id) => {
     navigate(`/coffees/${id}`);
   };
 
   const handleEditing = (idx) => {
+    //i am using private route here without using if(User){}
     navigate(`/updateCoffee/${idx}`);
   };
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/coffees/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: `${name} deleted successfully`,
-                icon: "success",
-              });
-              const newCoffeesCollection = coffees.filter(
-                (coffee) => coffee._id !== id
-              );
-              setCoffees(newCoffeesCollection);
-            }
-          });
-      }
-    });
+    if (User) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/coffees/${id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.deletedCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: `${name} deleted successfully`,
+                  icon: "success",
+                });
+                const newCoffeesCollection = coffees.filter(
+                  (coffee) => coffee._id !== id
+                );
+                setCoffees(newCoffeesCollection);
+              }
+            });
+        }
+      });
+    } else {
+      navigate("/pages/signin");
+      toast.warn("You have to SignIn first to Delete Coffee.");
+    }
   };
 
   return (

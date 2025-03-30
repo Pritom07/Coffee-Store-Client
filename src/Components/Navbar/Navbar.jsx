@@ -2,9 +2,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { GiCoffeeCup } from "react-icons/gi";
 import { ImUsers } from "react-icons/im";
+import { useContext } from "react";
+import { ThemeContext } from "../Provider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { User, signoutUser } = useContext(ThemeContext);
 
   const navLinks = (
     <>
@@ -29,6 +33,17 @@ const Navbar = () => {
 
   const handleSignIn = () => {
     navigate("/pages/signin");
+  };
+
+  const handleSignOut = () => {
+    signoutUser()
+      .then(() => {
+        toast.success("SignOut successful,Thank you !");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -70,12 +85,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a
-            onClick={handleSignIn}
-            className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white"
-          >
-            SignIn
-          </a>
+          {User ? (
+            <a
+              onClick={handleSignOut}
+              className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white"
+            >
+              SignOut
+            </a>
+          ) : (
+            <a
+              onClick={handleSignIn}
+              className="bg-[#E3B577] btn border-2 border-[#E3B577] font-rancho text-2xl text-[#6F4E37] font-medium hover:bg-black hover:text-white hover:border-white"
+            >
+              SignIn
+            </a>
+          )}
         </div>
       </div>
     </div>
