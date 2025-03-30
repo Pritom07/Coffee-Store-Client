@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { createContext } from "react";
 import { auth } from "./firebase.init";
 
@@ -8,7 +11,11 @@ const Provider = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const userInfo = { createUser };
+
+  const signinUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const userInfo = { createUser, signinUser };
   return (
     <ThemeContext.Provider value={userInfo}>{children}</ThemeContext.Provider>
   );

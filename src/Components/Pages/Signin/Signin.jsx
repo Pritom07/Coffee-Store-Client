@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
+import { ThemeContext } from "../../Provider";
+import { toast } from "react-toastify";
 
 const Signin = () => {
   const [pass, seePass] = useState(false);
+  const navigate = useNavigate();
+  const { signinUser } = useContext(ThemeContext);
 
   useEffect(() => {
     AOS.init({ duration: 500, easing: "ease-in-sine", once: true });
@@ -21,6 +25,34 @@ const Signin = () => {
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
+
+    signinUser(email, password)
+      .then((userCredential) => {
+        const UserLastSignIn = userCredential.user.metadata.lastSignInTime;
+        const user = { email, password, UserLastSignIn };
+
+        fetch("http://localhost:5000/users", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount) {
+              toast.success(
+                "Thanks, You are successfully SignedIn the website!"
+              );
+              navigate("/");
+            }
+          });
+      })
+      .catch((err) => {
+        toast.error(
+          `${err.message} Please enter correct Email and Password or Don't have an account SignUp first.`
+        );
+      });
   };
 
   return (
