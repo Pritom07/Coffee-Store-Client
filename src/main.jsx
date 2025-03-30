@@ -17,6 +17,8 @@ import Error from "./Components/Error";
 import Signin from "./Components/Pages/Signin/Signin";
 import Signup from "./Components/Pages/Signup/Signup";
 import UserAccess from "./Components/Pages/UserAccess/UserAccess";
+import Provider from "./Components/Provider";
+import { ToastContainer, Zoom } from "react-toastify";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +30,11 @@ const router = createBrowserRouter(
           element={<Home></Home>}
         ></Route>
         <Route path="/addcoffee" element={<Addcoffee></Addcoffee>}></Route>
-        <Route path="/users" element={<Users></Users>}></Route>
+        <Route
+          path="/users"
+          loader={() => fetch("http://localhost:5000/users")}
+          element={<Users></Users>}
+        ></Route>
         <Route
           path="/coffees/:id"
           loader={({ params }) =>
@@ -56,6 +62,21 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Zoom}
+      />
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

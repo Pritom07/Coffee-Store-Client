@@ -60,10 +60,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* <a className="btn btn-ghost text-xl">
-            <img src="Images/more/2.png" className="w-14"></img>
-          </a> */}
-          <p className="font-rancho text-3xl md:text-4xl font-semibold text-white">
+          <p className="font-rancho text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
             Coffee Store
           </p>
         </div>
