@@ -37,7 +37,7 @@ const Signin = () => {
         const UserLastSignIn = userCredential.user.metadata.lastSignInTime;
         const user = { email, password, UserLastSignIn };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-server-orcin.vercel.app/users", {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -83,7 +83,7 @@ const Signin = () => {
         const UserLastSignIn = User.metadata.lastSignInTime;
         const signinUser = { name, email, UserLastSignIn };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-server-orcin.vercel.app/users", {
           method: "PUT",
           headers: {
             "content-type": "application/json",

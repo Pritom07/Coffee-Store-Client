@@ -22,7 +22,7 @@ const UpdateUser = () => {
     const password = form.get("password");
     const updatedUser = { name, email, password };
 
-    fetch(`http://localhost:5000/users/${_id}`, {
+    fetch(`https://coffee-server-orcin.vercel.app/users/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

@@ -34,7 +34,7 @@ const EachCoffee = ({ coffee, coffees, setCoffees }) => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/coffees/${id}`, {
+          fetch(`https://coffee-server-orcin.vercel.app/coffees/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

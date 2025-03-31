@@ -41,7 +41,7 @@ const Signup = () => {
       .then((userCredential) => {
         const User = userCredential.user;
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-server-orcin.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
