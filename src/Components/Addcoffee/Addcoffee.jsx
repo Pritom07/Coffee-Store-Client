@@ -24,7 +24,6 @@ const Addcoffee = () => {
       details,
       photoURL,
     };
-    console.log(addedCoffee);
 
     fetch("http://localhost:5000/coffees", {
       method: "POST",
@@ -35,7 +34,6 @@ const Addcoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: `${name} added successfully !`,
