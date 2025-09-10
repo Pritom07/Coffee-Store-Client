@@ -52,7 +52,7 @@ const Signin = () => {
               );
             }
             {
-              location?.state ? navigate(location.state) : navigate("/");
+              location?.state ? navigate(location?.state) : navigate("/");
             }
           });
       })
