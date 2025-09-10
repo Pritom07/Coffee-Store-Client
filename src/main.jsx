@@ -28,26 +28,34 @@ const router = createBrowserRouter(
       <Route path="/" element={<Root></Root>}>
         <Route
           index
-          loader={() => fetch("https://coffee-server-orcin.vercel.app/coffees")}
+          loader={() =>
+            fetch("https://coffee-store-server-ten-ashy.vercel.app/coffees")
+          }
           element={<Home></Home>}
         ></Route>
         <Route path="/addcoffee" element={<Addcoffee></Addcoffee>}></Route>
         <Route
           path="/users"
-          loader={() => fetch("https://coffee-server-orcin.vercel.app/users")}
+          loader={() =>
+            fetch("https://coffee-store-server-ten-ashy.vercel.app/users")
+          }
           element={<Users></Users>}
         ></Route>
         <Route
           path="/coffees/:id"
           loader={({ params }) =>
-            fetch(`https://coffee-server-orcin.vercel.app/coffees/${params.id}`)
+            fetch(
+              `https://coffee-store-server-ten-ashy.vercel.app/coffees/${params.id}`
+            )
           }
           element={<CoffeeDetails />}
         ></Route>
         <Route
           path="/updateCoffee/:id"
           loader={({ params }) =>
-            fetch(`https://coffee-server-orcin.vercel.app/coffees/${params.id}`)
+            fetch(
+              `https://coffee-store-server-ten-ashy.vercel.app/coffees/${params.id}`
+            )
           }
           element={
             <PrivateRoute>
@@ -58,7 +66,9 @@ const router = createBrowserRouter(
         <Route
           path="/updateUser/:id"
           loader={({ params }) =>
-            fetch(`https://coffee-server-orcin.vercel.app/users/${params.id}`)
+            fetch(
+              `https://coffee-store-server-ten-ashy.vercel.app/users/${params.id}`
+            )
           }
           element={
             <PrivateRoute>

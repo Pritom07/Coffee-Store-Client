@@ -28,7 +28,7 @@ const UpdateCoffee = () => {
       photoURL,
     };
 
-    fetch(`https://coffee-server-orcin.vercel.app/coffees/${_id}`, {
+    fetch(`https://coffee-store-server-ten-ashy.vercel.app/coffees/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
